@@ -1,0 +1,10 @@
+{
+  "name":"D.A.B.S.y",
+  "short_name":"D.A.B.S.y",
+  "start_url":"./",
+  "display":"standalone",
+  "background_color":"#000000",
+  "theme_color":"#000000",
+  "description":"A living AI desktop pet and study companion.",
+  "icons":[{"src":"assets/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

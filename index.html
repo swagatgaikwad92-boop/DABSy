@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="D.A.B.S.y, a living AI desktop pet and study companion.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <title>D.A.B.S.y</title>
+  <link rel="stylesheet" href="styles/base.css">
+</head>
+<body>
+  <main id="app" aria-label="D.A.B.S.y">
+    <div id="face-stage">
+      <svg id="face" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg" aria-label="D.A.B.S.y face">
+        <defs>
+          <filter id="glow-cyan" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur1"/>
+            <feGaussianBlur in="SourceGraphic" stdDeviation="25" result="blur2"/>
+            <feGaussianBlur in="SourceGraphic" stdDeviation="45" result="blur3"/>
+            <feMerge><feMergeNode in="blur3"/><feMergeNode in="blur2"/><feMergeNode in="blur1"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="glow-white" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur1"/>
+            <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur2"/>
+            <feGaussianBlur in="SourceGraphic" stdDeviation="32" result="blur3"/>
+            <feMerge><feMergeNode in="blur3"/><feMergeNode in="blur2"/><feMergeNode in="blur1"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <g id="eyes" filter="url(#glow-cyan)">
+          <rect id="left-eye" class="eye-hit" x="95" y="210" width="85" height="130" rx="38" fill="#00e5ff"/>
+          <rect id="right-eye" class="eye-hit" x="220" y="210" width="85" height="130" rx="38" fill="#00e5ff"/>
+        </g>
+        <g id="glints">
+          <circle cx="120" cy="238" r="11" fill="#ffffff"/>
+          <circle cx="245" cy="238" r="11" fill="#ffffff"/>
+        </g>
+        <g id="bowtie" filter="url(#glow-white)">
+          <polygon id="bow-left" points="160,411 160,429 110,445 110,395" fill="#ffffff" stroke="#ffffff" stroke-width="12" stroke-linejoin="round"/>
+          <polygon id="bow-right" points="240,411 240,429 290,445 290,395" fill="#ffffff" stroke="#ffffff" stroke-width="12" stroke-linejoin="round"/>
+          <rect id="knot" x="186" y="408" width="28" height="24" rx="7" fill="#e0f7fa" opacity=".85"/>
+        </g>
+        <rect id="knot-glint" x="190" y="411" width="8" height="7" rx="2.5" fill="#ffffff"/>
+      </svg>
+      <div id="subtitle" aria-live="polite"></div>
+      <div id="status-dot" title="D.A.B.S.y status"></div>
+      <div id="projection" hidden>
+        <div id="projection-pointer"></div>
+        <div id="projection-card">
+          <div id="projection-title"></div>
+          <div id="projection-body"></div>
+        </div>
+      </div>
+    </div>
+
+    <section id="menu" class="panel hidden" aria-hidden="true">
+      <button class="close-btn" data-action="close-panel">×</button>
+      <h2 id="menu-title">D.A.B.S.y</h2>
+      <div id="menu-grid"></div>
+    </section>
+
+    <section id="carousel" class="panel hidden" aria-hidden="true">
+      <button class="close-btn" data-action="close-panel">×</button>
+      <div id="carousel-eye-label"></div>
+      <div id="carousel-content"></div>
+      <div class="carousel-hint">Swipe ← / →</div>
+    </section>
+
+    <section id="tool-panel" class="panel hidden" aria-hidden="true">
+      <button class="close-btn" data-action="close-panel">×</button>
+      <div id="tool-content"></div>
+    </section>
+
+    <div id="toast" role="status"></div>
+
+    <input id="camera-input" type="file" accept="image/*" capture="environment" hidden>
+    <video id="camera-preview" autoplay playsinline muted hidden></video>
+    <canvas id="capture-canvas" hidden></canvas>
+  </main>
+
+  <script src="scripts/config.js"></script>
+  <script src="scripts/storage.js"></script>
+  <script src="scripts/face.js"></script>
+  <script src="scripts/ai.js"></script>
+  <script src="scripts/vision.js"></script>
+  <script src="scripts/pet.js"></script>
+  <script src="scripts/app.js"></script>
+</body>
+</html>
